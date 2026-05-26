@@ -34,38 +34,11 @@ data "azurerm_kubernetes_cluster" "grouper" {
 
 # ----- ALB subnet (new, added into existing calstate dev VNet) -----
 
-# resource "azurerm_subnet" "alb" {
-#   name                 = "snet-alb-${var.name_prefix}"
-#   resource_group_name  = data.azurerm_resource_group.grouper.name
-#   virtual_network_name = data.azurerm_virtual_network.grouper.name
-#   address_prefixes     = [var.alb_subnet_cidr]
-
-#   delegation {
-#     name = "alb-delegation"
-#     service_delegation {
-#       name    = "Microsoft.ServiceNetworking/trafficControllers"
-#       actions = ["Microsoft.Network/virtualNetworks/subnets/join/action"]
-#     }
-#   }
-# }
-# ----- Expand dev VNet address space to accommodate ALB subnet -----
-
-resource "azurerm_virtual_network" "alb_space" {
-  name                = var.vnet_name
-  location            = data.azurerm_resource_group.grouper.location
-  resource_group_name = data.azurerm_resource_group.grouper.name
-  address_space       = ["10.247.80.0/23", "10.247.84.0/27"]
-}
-
-# ----- ALB subnet (new, added into existing calstate dev VNet) -----
-
 resource "azurerm_subnet" "alb" {
   name                 = "snet-alb-${var.name_prefix}"
   resource_group_name  = data.azurerm_resource_group.grouper.name
   virtual_network_name = data.azurerm_virtual_network.grouper.name
   address_prefixes     = [var.alb_subnet_cidr]
-
-  depends_on = [azurerm_virtual_network.alb_space]
 
   delegation {
     name = "alb-delegation"
