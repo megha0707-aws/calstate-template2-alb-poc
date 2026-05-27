@@ -4,5 +4,6 @@ terraform {
     storage_account_name = "groupertfstatepoc01"
     container_name       = "terraform"
     key                  = "dcs-apps-alb.tfstate"
+    use_azuread_auth     = true
   }
 }
