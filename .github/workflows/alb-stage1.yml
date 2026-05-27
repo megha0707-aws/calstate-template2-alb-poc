@@ -12,7 +12,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: .
+        working-directory: calstate-template2
 
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -44,4 +44,4 @@ jobs:
         run: terraform plan -var-file="terraform.tfvars"
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var-file="terraform.tfvars" 
+        run: terraform apply -auto-approve -var-file="terraform.tfvars"
