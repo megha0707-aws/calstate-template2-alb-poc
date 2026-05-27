@@ -25,11 +25,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Azure Login
-        uses: azure/login@v2
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
@@ -37,9 +32,6 @@ jobs:
 
       - name: Terraform Init
         run: terraform init -reconfigure
-
-      - name: Force Unlock Stale State
-        run: terraform force-unlock -force c26788de-e58c-359d-b887-9ef2c1701e67 || true
 
       - name: Terraform Validate
         run: terraform validate
