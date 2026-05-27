@@ -23,7 +23,7 @@ data "azurerm_kubernetes_cluster" "grouper" {
 # ----- Existing App Gateway subnet from infra -----
 
 data "azurerm_subnet" "appgw" {
-  name                 = "grouper-dev-appgw-subnet"
+  name                 = "grouper-dev-tf-appgw-subnet"
   virtual_network_name = data.azurerm_virtual_network.grouper.name
   resource_group_name  = data.azurerm_resource_group.grouper.name
 }
