@@ -12,7 +12,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: .
+        working-directory: calstate-template2
 
     env:
       ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
@@ -28,6 +28,9 @@ jobs:
         uses: azure/login@v2
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Show Files
+        run: pwd && ls -la
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
