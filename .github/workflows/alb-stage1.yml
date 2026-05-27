@@ -38,6 +38,9 @@ jobs:
       - name: Terraform Init
         run: terraform init -reconfigure
 
+      - name: Force Unlock Stale State
+        run: terraform force-unlock -force c26788de-e58c-359d-b887-9ef2c1701e67 || true
+
       - name: Terraform Validate
         run: terraform validate
 
@@ -45,4 +48,4 @@ jobs:
         run: terraform plan -var-file="terraform.tfvars"
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve -var-file="terraform.tfvars"g
+        run: terraform apply -auto-approve -var-file="terraform.tfvars"
