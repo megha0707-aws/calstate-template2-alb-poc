@@ -14,6 +14,9 @@ terraform {
 
 provider "azurerm" {
   features {}
+  use_cli = false
 }
 
-provider "azapi" {}
+provider "azapi" {
+  use_cli = false
+}
